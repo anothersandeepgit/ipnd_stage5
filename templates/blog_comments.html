@@ -1,0 +1,41 @@
+
+{% extends "base.html" %}
+
+
+{% block content %}
+
+	<head>
+    <meta charset="UTF-8">
+    <title>Comments</title>
+    <link rel="stylesheet" type="text/css" href='/stylesheets/style.css' >
+  </head>
+
+		<form method="post" action=/addblogentry>
+			{% if template_values.errors != "" %}
+				<div style="color: red">{{ template_values.errors }}</div>
+			{% endif %}
+			<div>
+				<textarea name="content" rows="4" cols="60" ></textarea>
+			</div>
+			
+			<input type="submit" value="Submit Comment">
+			<br><br>
+			<a href="{{ template_values.url|safe }}">{{ template_values.url_linktext }}</a>
+			<br>
+				
+		</form>
+
+		<hr>
+		<br>
+
+		<table border="1"><th>User Name</th><th>Comment</th></tr>
+			{% for entry in template_values.entries %}
+
+				<tr>
+					<td>{{ entry.username }}</td>
+					<td><blockquote>{{ entry.comment }}</blockquote></td>
+				</tr>
+
+			{% endfor %}
+		</table>
+{% endblock %}

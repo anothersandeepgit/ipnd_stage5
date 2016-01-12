@@ -1,0 +1,24 @@
+application: stage5js-1188
+version: 2
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: /stylesheets
+  static_dir: stylesheets
+- url: /libs
+  static_dir: libs
+- url: /favicon\.ico
+  static_files: favicon.ico
+  upload: favicon\.ico
+  
+- url: /.*
+  script: blog_comments.app
+  
+libraries:
+- name: webapp2
+  version: latest
+- name: jinja2
+  version: latest
+
